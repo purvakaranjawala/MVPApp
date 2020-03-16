@@ -1,0 +1,30 @@
+<%= form_for :appointment, url: patient_appointments_path(current_user), method: :post do |form| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+        <% @appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :doctor_id, "Doctor" %>
+    <%= form.select :doctor_id, @doctors.map{|doc| [doc.email, doc.id]}, prompt: "Select doctor"%>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= time_select("time", "written_on", prompt: {hour: 'Choose hour', minute: 'Choose minute', second: 'Choose seconds'})
+ %>
+
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

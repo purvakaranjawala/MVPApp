@@ -1,0 +1,16 @@
+<table class="striped table padded">
+  <h4 class="center aligned">Doctors</h4>
+  <thead>
+    <th> Id </th>
+    <th> Email </th>
+ </thead>
+  <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.id %></td>
+        <td><%= doctor.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Make Appointment', new_patient_appointment_path(current_user)%>
